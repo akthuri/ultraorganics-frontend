@@ -22,6 +22,14 @@
             </template>
           </el-table-column>
         </el-table>
+
+        <el-pagination :total="totalRegistros" :page-size="pageSize"
+            :currentPage="currentPage" layout="total, prev, pager, next"
+            @current-change="listado_onpagechange" />
+      </div>
+
+      <div class="leyendas">
+        <i class="el-icon-view"></i> Consultar
       </div>
     </div>
 
@@ -37,24 +45,41 @@ const metodos = {
     let theValue = null
     if (cellValue) theValue = moment(cellValue).format('DD-MM-YYYY HH:mm')
     return theValue
+  },
+  listado_onpagechange (newPage) {
+    this.currentPage = newPage
+    this.consultar()
+  },
+  consultar () {
+    const config = {
+      params: {
+        $skip: (this.currentPage - 1) * this.pageSize,
+        '$sort[dateCreated]': -1
+      }
+    }
+    axios.get('/api/elaboraciones', config)
+      .then((response) => {
+        if (response.status === 200) {
+          this.totalRegistros = response.data.total
+          this.elaboraciones = response.data.data
+        }
+      })
   }
 }
 
 export default {
   name: 'elaboracioneslist',
+  props: ['id'],
   data: () => {
     return {
-      elaboraciones: []
+      elaboraciones: [],
+      currentPage: 1,
+      pageSize: 10,
+      totalRegistros: 0
     }
   },
   created () {
-    const _this = this
-    axios.get('/api/elaboraciones')
-      .then(function (response) {
-        if (response.status === 200) {
-          _this.elaboraciones = response.data.data
-        }
-      })
+    this.consultar()
   },
   methods: metodos
 }
@@ -64,7 +89,13 @@ export default {
     border: solid 1px lightgrey;
     margin: 15px 0 0 0;
   }
+  .el-table {
+    font: 11px verdana, arial, helvetica, sans-serif;
+  }
   .el-icon-view {
     color: blue;
+  }
+  .leyendas {
+    margin: 10px 0 0 0;
   }
 </style>

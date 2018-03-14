@@ -1,0 +1,38 @@
+  #encabezado {
+    margin: 15px 0 0 0;
+    border: solid 1px lightgrey;
+    padding: 15px;
+  }
+  #partidas {
+    margin: 5px 0 0 0;
+  }
+  #botones {
+    margin: 5px 0 0 0;
+    background-color: whitesmoke;
+    border: solid 1px lightgrey;
+    padding: 8px 0 8px 15px;
+  }
+  .el-autocomplete {
+    width: 100%;
+  }
+  .label {
+    font-weight: bold;
+  }
+  .valor {
+    margin: 0 0 0 15px;
+  }
+  .opcion {
+    font: 11px verdana, arial, helvetica, sans-serif;
+  }
+  .stock {
+    color: green;
+    font-size: 8pt;
+  }
+  .faltante {
+    color: red;
+    font-size: 8pt;
+  }
+  .semaforos {
+    text-align: center;
+  }
+  

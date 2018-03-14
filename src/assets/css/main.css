@@ -205,7 +205,6 @@ td.errors textarea {
     line-height: 12px;
     padding: 5px 6px;
     text-align: left;
-    vertical-align: top;
 }
 .tabla th {
     background: #fff url(../img/shadow.jpg);
@@ -321,4 +320,10 @@ th.desc a {
 }
 .contenedor {
   margin: 0 20px 0 20px;
+}
+.spacer-10 {
+  margin-left: 10px;
+}
+.spacer-15 {
+  margin-left: 15px;
 }

@@ -27,6 +27,7 @@
             <div class="texto-opcion">Usuarios</div>
           </router-link>
         </div>
+
       </div>
     </div>
   </div>
@@ -37,7 +38,7 @@ export default {
   name: 'index',
   computed: {
     isAdmin () {
-      return false
+      return true
     }
   }
 }
